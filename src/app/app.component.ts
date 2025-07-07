@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
-import { RouterOutlet } from '@angular/router';
+
 
 declare const pdfjsLib: any;
 
@@ -15,6 +15,7 @@ declare const pdfjsLib: any;
 })
 
 export class AppComponent {
+
   selectedFile: File | null = null;
   pdfUrl: SafeResourceUrl | null = null;
   error: string | null = null;
