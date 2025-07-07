@@ -11,6 +11,9 @@
   <div *ngIf="selectedFile" class="file-info">
     <p><strong>Selected:</strong> {{ selectedFile.name }}</p>
     <p><strong>Size:</strong> {{ formatFileSize(selectedFile.size) }}</p>
+    <button (click)="extractText()" class="extract-btn" [disabled]="isExtracting">
+      {{ isExtracting ? 'Extracting...' : 'Extract Text' }}
+    </button>
   </div>
 
   <div *ngIf="pdfUrl" class="pdf-viewer">
@@ -20,5 +23,23 @@
 
   <div *ngIf="error" class="error">
     {{ error }}
+  </div>
+
+  <!-- Text Extraction Modal -->
+  <div *ngIf="showModal" class="modal-overlay" (click)="closeModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>Extracted Text</h2>
+        <button class="close-btn" (click)="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="text-actions">
+          <button (click)="copyText()" class="copy-btn">Copy Text</button>
+          <span *ngIf="copySuccess" class="copy-success">Copied!</span>
+        </div>
+        <textarea readonly [value]="extractedText" class="extracted-text" #textArea>
+        </textarea>
+      </div>
+    </div>
   </div>
 </div>
