@@ -51,7 +51,18 @@ export class AppComponent {
 
   private loadPdf(file: File): void {
     const fileUrl = URL.createObjectURL(file);
+    console.log('Created object URL:', fileUrl); // Debug log
     this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fileUrl);
+    console.log('Sanitized URL:', this.pdfUrl); // Debug log
+  }
+
+  onIframeLoad(): void {
+    console.log('Iframe loaded successfully');
+  }
+
+  onIframeError(event: any): void {
+    console.error('Iframe error:', event);
+    this.error = 'Failed to display PDF preview';
   }
 
   formatFileSize(bytes: number): string {

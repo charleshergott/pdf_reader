@@ -16,7 +16,8 @@
   </div>
 
   <div *ngIf="pdfUrl" class="pdf-viewer">
-    <iframe [src]="pdfUrl" width="100%" height="600" frameborder="0">
+    <iframe [src]="pdfUrl" width="100%" height="600" frameborder="0" (load)="onIframeLoad()"
+      (error)="onIframeError($event)">
     </iframe>
   </div>
 
